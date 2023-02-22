@@ -47,17 +47,23 @@ def convertDegreesToKelvin():
 
 
 def algorithm():
-    print('\n You have selected algorithm that always return 2, let see for yourself.')
+    print('\n You have selected algorithm that always calculate result is 2, let see for yourself.')
     userNumberOne = input('\n Enter the first number other than zero: ')
     userNumberTwo = input('\n Enter the second number other than zero: ')
-    userNumberOne = float(userNumberOne)
-    userNumberTwo = float(userNumberTwo)
-    userNumber = userNumberOne + userNumberTwo
-    userNumber = ((((userNumber * userNumber) - (userNumberOne *
-                  userNumberOne)) - (userNumberTwo * userNumberTwo)) / userNumberOne) / userNumberTwo
-    userNumber = round(userNumber, 1)
-    print(userNumber)
-    input()
+    if is_float_digit_v2(userNumberOne) and is_float_digit_v2(userNumberTwo):
+        userNumberOne = float(userNumberOne)
+        userNumberTwo = float(userNumberTwo)
+        if userNumberOne <= 0 or userNumberTwo <= 0:
+            wrongValue()
+        userNumber = userNumberOne + userNumberTwo
+        userNumber = ((((userNumber * userNumber) - (userNumberOne *
+                                                     userNumberOne)) - (userNumberTwo * userNumberTwo)) / userNumberOne) / userNumberTwo
+        userNumber = round(userNumber, 1)
+        print('\n The result is: ', userNumber)
+        backToMenu()
+        input()
+    else:
+        wrongValue()
 
 
 def showMenu():
