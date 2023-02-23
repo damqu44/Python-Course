@@ -20,15 +20,35 @@ def backToMenu():
     showMenu()
 
 
+def check0v1(z):
+    z = str(z)
+    x = z[z.find('.')+1:]
+    if len(x) == 1:
+        z = z + '0'
+    return z
+
+
+def check0v2(z):
+    z = str(z)
+    x = z[z.find('.')+1:]
+    if len(x) == 1:
+        z = z + '0'
+    return z
+
+
 def convertDegreesToFahrenheit():
     print('\n You have selected the Celsius to Fahrenheit converter. ')
     userInputCelsius = input('\n Enter the temperature in Celsius: ')
     if is_float_digit_v2(userInputCelsius):
         userInputCelsius = float(userInputCelsius)
         celsiusInFahrenheit = round(32 + (9/5)*userInputCelsius, 2)
-        print('\n', userInputCelsius, 'C is', celsiusInFahrenheit, 'F')
+        userInputCelsius = round(userInputCelsius, 2)
+
+        z = celsiusInFahrenheit
+        v = userInputCelsius
+
+        print('\n', check0v2(v), 'C is', check0v1(z), 'F')
         backToMenu()
-        input()
     else:
         wrongValue()
 
@@ -39,9 +59,13 @@ def convertDegreesToKelvin():
     if is_float_digit_v2(userInputCelsius):
         userInputCelsius = float(userInputCelsius)
         celsiusInKelvin = round(userInputCelsius + 273.15, 2)
-        print('\n', userInputCelsius, 'C is', celsiusInKelvin, 'K')
+        userInputCelsius = round(userInputCelsius, 2)
+
+        z = celsiusInKelvin
+        v = userInputCelsius
+
+        print('\n', check0v2(v), 'C is', check0v1(z), 'K')
         backToMenu()
-        input()
     else:
         wrongValue()
 
@@ -61,7 +85,6 @@ def algorithm():
         userNumber = round(userNumber, 1)
         print('\n The result is: ', userNumber)
         backToMenu()
-        input()
     else:
         wrongValue()
 
