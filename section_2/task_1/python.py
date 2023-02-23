@@ -20,15 +20,7 @@ def backToMenu():
     showMenu()
 
 
-def check0v1(z):
-    z = str(z)
-    x = z[z.find('.')+1:]
-    if len(x) == 1:
-        z = z + '0'
-    return z
-
-
-def check0v2(z):
+def adding0(z):
     z = str(z)
     x = z[z.find('.')+1:]
     if len(x) == 1:
@@ -44,10 +36,10 @@ def convertDegreesToFahrenheit():
         celsiusInFahrenheit = round(32 + (9/5)*userInputCelsius, 2)
         userInputCelsius = round(userInputCelsius, 2)
 
-        z = celsiusInFahrenheit
-        v = userInputCelsius
+        z1 = userInputCelsius
+        z2 = celsiusInFahrenheit
 
-        print('\n', check0v2(v), 'C is', check0v1(z), 'F')
+        print('\n', adding0(z1), 'C is', adding0(z2), 'F')
         backToMenu()
     else:
         wrongValue()
@@ -61,10 +53,10 @@ def convertDegreesToKelvin():
         celsiusInKelvin = round(userInputCelsius + 273.15, 2)
         userInputCelsius = round(userInputCelsius, 2)
 
-        z = celsiusInKelvin
-        v = userInputCelsius
+        z1 = userInputCelsius
+        z2 = celsiusInKelvin
 
-        print('\n', check0v2(v), 'C is', check0v1(z), 'K')
+        print('\n', adding0(z1), 'C is', adding0(z2), 'K')
         backToMenu()
     else:
         wrongValue()
