@@ -1,0 +1,117 @@
+{
+    "customers" : [
+        {
+            "id" : "1",
+            "name" : "Jan",
+            "lastname" : "Nowak",
+            "getDrivingLicenseData" : "04.03.2021"
+        },
+        {
+            "id" : "2",
+            "name" : "Agnieszka",
+            "lastname" : "Kowalska",
+            "getDrivingLicenseData" : "15.01.1999"
+        },
+        {
+            "id" : "3",
+            "name" : "Robert",
+            "lastname" : "Lewandowski",
+            "getDrivingLicenseData" : "18.12.2010"
+        },
+        {
+            "id" : "4",
+            "name" : "Zofia",
+            "lastname" : "Plucinska",
+            "getDrivingLicenseData" : "29.04.2020"
+        },
+        {
+            "id" : "5",
+            "name" : "Grzegorz",
+            "lastname" : "Braun",
+            "getDrivingLicenseData" : "12.07.2015"
+        }
+    ],
+
+    "cars" : [
+        {
+            "id" : "1",
+            "brand" : "Skoda Citigo",
+            "segment" : "mini",
+            "fuelType" : "petrol",
+            "pricePerDay" : "70 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "2",
+            "brand" : "Toyota Aygo",
+            "segment" : "mini",
+            "fuelType" : "petrol",
+            "pricePerDay" : "90 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "3",
+            "brand" : "Fiat 500",
+            "segment" : "mini",
+            "fuelType" : "electric",
+            "pricePerDay" : "110 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "4",
+            "brand" : "Ford Focus",
+            "segment" : "compact",
+            "fuelType" : "diesel",
+            "pricePerDay" : "160 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "5",
+            "brand" : "Kia Ceed",
+            "segment" : "compact",
+            "fuelType" : "petrol",
+            "pricePerDay" : "150 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "6",
+            "brand" : "Volkswagen Golf",
+            "segment" : "compact",
+            "fuelType" : "petrol",
+            "pricePerDay" : "160 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "7",
+            "brand" : "Hyundai Kona Electric",
+            "segment" : "compact",
+            "fuelType" : "electric",
+            "pricePerDay" : "180 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "8",
+            "brand" : "Audi A6 Allroad",
+            "segment" : "premium",
+            "fuelType" : "diesel",
+            "pricePerDay" : "290 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "9",
+            "brand" : "Mercedes E270 AMG",
+            "segment" : "premium",
+            "fuelType" : "petrol",
+            "pricePerDay" : "320 PLN",
+            "status" : "available"
+        },
+        {
+            "id" : "10",
+            "brand" : "Tesla Model S",
+            "segment" : "premium",
+            "fuelType" : "electric",
+            "pricePerDay" : "350 PLN",
+            "status" : "available"
+        }
+    ]
+}
