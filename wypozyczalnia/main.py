@@ -1,5 +1,6 @@
 from datetime import date
 from datetime import timedelta
+import datetime
 import os
 import json
 
@@ -130,9 +131,18 @@ def segmentMenu():
     print('\n 3. premium')
     global segmentInput
     segmentInput = input('\n Enter 1, 2 or 3: ')
-    if segmentInput == '1' or segmentInput == '2' or segmentInput == '3':
+    if segmentInput == '1' or segmentInput == '2':
         os.system('cls')
         fuelTypeMenu()
+    elif segmentInput == '3':
+        if yearsCount() < 4:
+            os.system('cls')
+            print(
+                redFont + '\n You drive too short to rent a permium class vehicle.\n' + '\x1b[0m')
+            showMenu()
+        else:
+            os.system('cls')
+            fuelTypeMenu()
     else:
         os.system('cls')
         segmentMenu()
@@ -164,13 +174,13 @@ def rentalLength():
     daysAmount = input('\n Enter the number of days of renting the vehicle: ')
     if daysAmount.isdigit():
         daysAmount = int(daysAmount)
-        if daysAmount > 0 and daysAmount < 31:
+        if daysAmount > 0 and daysAmount < 121:
             os.system('cls')
             generateContract(daysAmount)
         else:
             os.system('cls')
             print(
-                redFont + 'The maximum rental period is 30 days.' + '\x1b[0m')
+                redFont + 'The maximum rental period is 120 days.' + '\x1b[0m')
             rentalLength()
     else:
         os.system('cls')
@@ -178,9 +188,6 @@ def rentalLength():
 
 
 def generateContract(daysAmount):
-    price = carsList[intClientId-1].pricePerDay
-    price = price.split(' ', 1)
-    price[0] = int(price[0])
     print(yellowFont + '\n Vehicle rental agreement')
     print('\n Date of conclusion:', date.today(), '\x1b[0m')
     print('\n ------------------------------------------')
@@ -192,7 +199,7 @@ def generateContract(daysAmount):
     print('\n ------------------------------------------')
     print(yellowFont + '\n Vehicle return date:',
           date.today() + timedelta(days=daysAmount))
-    print('\n Fee:', price[0]*daysAmount, price[1], '\x1b[0m')
+    print('\n Fee:', priceCount(daysAmount), '\x1b[0m')
     print('\n ------------------------------------------')
     confirmation = input('\n Do you accept the agreement? (Y/N): ')
     confirmation = confirmation.upper()
@@ -212,6 +219,40 @@ def generateContract(daysAmount):
         os.system('cls')
         print(redFont + '\n Enter yes or no... \x1b[0m')
         generateContract(daysAmount)
+
+
+def priceCount(daysAmount):
+    price = carsList[intClientId-1].pricePerDay
+    price = price.split(' ', 1)
+    price[0] = int(price[0])
+    finalPrice = price[0] * daysAmount
+
+    if daysAmount > 7:
+        finalPrice = finalPrice - price[0]
+    elif daysAmount > 30:
+        finalPrice = finalPrice - 3 * price[0]
+
+    if yearsCount() < 4:
+        finalPrice = finalPrice * 1.2
+
+    return finalPrice
+
+
+def yearsCount():
+    x = customersList[intClientId-1].getDrivingLicenseData.split('.')
+    x[0] = int(x[0])
+    x[1] = int(x[1])
+    x[2] = int(x[2])
+    y = datetime.date(x[2], x[1], x[0])
+    z = date.today()
+    c = z - y
+    c = str(c)
+    c = c.split(' ', 1)
+    v = c[0]
+    v = int(v)
+    years = v / 365
+    years = round(years)
+    return years
 
 
 print('\n Welcome to car rental.\n')
