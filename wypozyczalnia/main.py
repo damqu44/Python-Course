@@ -227,10 +227,10 @@ def priceCount(daysAmount):
     price[0] = int(price[0])
     finalPrice = price[0] * daysAmount
 
-    if daysAmount > 7:
-        finalPrice = finalPrice - price[0]
-    elif daysAmount > 30:
+    if daysAmount > 30:
         finalPrice = finalPrice - 3 * price[0]
+    elif daysAmount > 7:
+        finalPrice = finalPrice - price[0]
 
     if yearsCount() < 4:
         finalPrice = finalPrice * 1.2
