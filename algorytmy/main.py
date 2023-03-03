@@ -1,6 +1,7 @@
 import random
 
 
+# losuje liczby całkowite z podanego przedziału i dodaje do tablicy
 def drawingNumbers():
     i = 0
     global randomNumbers
@@ -11,6 +12,7 @@ def drawingNumbers():
         i = i + 1
 
 
+# liczy ilość liczb większych od 5 i zwraca wynik
 def countNumbers():
     numbersAmount = 0
     for x in randomNumbers:
@@ -19,6 +21,7 @@ def countNumbers():
     return numbersAmount
 
 
+# liczy średnią arytmetyczną dla liczb większych od 5 i zwraca wynik
 def countArithmeticAvg():
     arithemticAvg = 0
     for x in randomNumbers:
@@ -29,6 +32,7 @@ def countArithmeticAvg():
     return arithemticAvg
 
 
+# liczy średnią geometryczną dla liczb większych od 5 i zwraca wynik
 def countGeometricAvg():
     geometricAvg = 1
     for x in randomNumbers:
@@ -39,6 +43,7 @@ def countGeometricAvg():
     return geometricAvg
 
 
+# sprawdza czy liczba jest pierwsza i zwraca boolean
 def is_prime(n):
     for i in range(2, int(n/2)):
         if (n % i) == 0:
@@ -46,6 +51,7 @@ def is_prime(n):
     return True
 
 
+# dodaje liczby pierwsze do tablicy i zwraca tablice
 def countPrimeNumbers():
     primeNumbers = []
     for x in randomNumbers:
@@ -54,6 +60,7 @@ def countPrimeNumbers():
     return primeNumbers
 
 
+# wyświetla wyniki algorytmów
 def showResults():
     print('\n Wylosowane liczby:', randomNumbers)
     print('\n Ilość liczb większych od 5:', countNumbers())
@@ -63,5 +70,6 @@ def showResults():
     input()
 
 
+# wywołuje funkcje
 drawingNumbers()
 showResults()
