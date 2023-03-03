@@ -1,0 +1,26 @@
+{
+    "cars" : [
+        {
+            "id" : "1",
+            "brand" : "BMW E90 320d",
+            "acceleration" : 3,
+            "brakingForce" : 4,
+            "maxSpeed" : 240
+        },
+        {
+            "id" : "2",
+            "brand" : "BMW E60 530d",
+            "acceleration" : 4,
+            "brakingForce" : 6,
+            "maxSpeed" : 280
+        },
+        {
+            "id" : "3",
+            "brand" : "BMW S7 760i",
+            "acceleration" : 8,
+            "brakingForce" : 10,
+            "maxSpeed" : 340
+        }
+
+    ]
+}

@@ -1,17 +1,25 @@
 import keyboard  # from pip
 import os
+import json
+import time
 
 redFont = '\x1b[38;2;255;0;0m'
 greenFont = '\x1b[38;2;124;252;0m'
 
+with open('C:/Users/Damian/Desktop/Python/car/file.json') as file:
+    json_dict = json.load(file)
+
 
 class Car:
-    def __init__(self):
-        self.__engine = True
+    def __init__(self, id, brand, __acceleration, __brakingForce, __maxSpeed):
+        self.id = id
+        self.brand = brand
+        self.__acceleration = __acceleration
+        self.__brakingForce = __brakingForce
+        self.__maxSpeed = __maxSpeed
+        self.__engine = False
         self.__gear = 1
         self.__speed = 0
-        self.__acceleration = 2
-        self.__brakingForce = 3
 
     def __startEngine(self):
         self.__engine = True
@@ -20,7 +28,7 @@ class Car:
         self.__engine = False
 
     def __speedUp(self):
-        if self.__engine == True and self.__speed < 240:
+        if self.__engine == True and self.__speed < self.__maxSpeed:
             self.__speed = self.__speed + self.__acceleration
             self.__speed = round(self.__speed, 1)
             self.__automaticGearbox()
@@ -47,8 +55,6 @@ class Car:
             self.__gear = 5
         elif self.__speed >= 130 and self.__speed:
             self.__gear = 6
-        else:
-            exit
 
     def __isEngineOn(self):
         if self.__engine:
@@ -60,6 +66,7 @@ class Car:
         return fontColor + carStatus
 
     def carControl(self):
+        self.__showParameters()
         while True:
             try:
                 if keyboard.is_pressed('w'):
@@ -68,20 +75,83 @@ class Car:
                 elif keyboard.is_pressed('s'):
                     self.__slowDown()
                     self.__showParameters()
+                elif keyboard.is_pressed('t'):
+                    if self.__speed == 0:
+                        if self.__engine == True:
+                            self.__stopEngine()
+                            self.__showParameters()
+                            time.sleep(1)
+                        else:
+                            self.__startEngine()
+                            self.__showParameters()
+                            time.sleep(1)
+                elif keyboard.is_pressed('e'):
+                    if self.__engine == False:
+                        break
             except:
                 continue
 
     def __showParameters(self):
         os.system('cls')
+        print('\n ------------------------')
+        print('\n Car: ' + self.brand)
         print('\n Car status: ' + self.__isEngineOn() + '\x1b[0m')
-        print('\n Car speed: ', self.__speed)
+        print('\n Car speed:', self.__speed, 'km/h')
         print('\n Car gear:', self.__gear)
-        if self.__engine == True and self.__speed >= 240:
+        if self.__engine == True and self.__speed >= self.__maxSpeed:
             print(
                 redFont + '\n The car has reached its maximum speed.' + '\x1b[0m')
-        elif self.__engine == False:
-            print('\n The car is off.')
+        print('\n ------------------------')
+        print('\n Keys Menu:')
+        print('\n T - turn on/off')
+        print('\n W - speed up')
+        print('\n S - slow down')
+        print('\n E - change car')
+        print('\n ------------------------')
 
 
-car1 = Car()
-car1.carControl()
+def generateCarsList():
+    global carsList
+    carsList = []
+    for x in json_dict['cars']:
+        car = Car(x['id'], x['brand'], x['acceleration'],
+                  x['brakingForce'], x['maxSpeed'])
+        carsList.append(car)
+
+
+def printCarList():
+    text = '{0:5s}{1:25s}'
+    print('\n Cars List:')
+    print('\n ------------------------')
+    print(text.format('\n ' + 'Id', 'Brand'))
+    for x in carsList:
+        print(text.format('\n ' + x.id, x.brand))
+    print('\n ------------------------')
+
+
+def chooseCar():
+    os.system('cls')
+    printCarList()
+    carChoosen = input('\n Enter number of a car: ')
+    if carChoosen.isdigit():
+        carChoosen = int(carChoosen)
+        if carChoosen > 0 and carChoosen < len(carsList)+1:
+            return carChoosen
+        else:
+            chooseCar()
+    else:
+        chooseCar()
+
+
+def makingCarObject():
+    selectedCar = carsList[chooseCar()-1]
+    return selectedCar
+
+
+generateCarsList()
+
+while True:
+    try:
+        makingCarObject().carControl()
+    except:
+        exit()
