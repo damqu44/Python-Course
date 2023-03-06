@@ -1,0 +1,24 @@
+
+import json
+from os import path
+
+data = {
+    "id": "4",
+    "name": "5Xd"
+}
+
+
+filePath = 'C:/Users/Damian/Desktop/Python/Organizer/file.json'
+listObj = []
+
+if path.isfile(filePath) is False:
+    raise Exception('File not found.')
+
+with open(filePath, "r+") as file:
+    listObj = json.load(file)
+    listObj['tasks'].append(data)
+    file.seek(0)
+    json.dump(listObj, file, indent=4)
+
+
+print(listObj)
