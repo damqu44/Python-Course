@@ -1,5 +1,6 @@
 import json
 import os
+import itertools
 from os import path
 
 redFont = '\x1b[38;2;255;0;0m'
@@ -65,13 +66,17 @@ def editJson(task):
 def showNotes():
     isFile()
 
-    with open(filePath, "r") as file:
+    with open(filePath, "r+") as file:
         listObj = json.load(file)
-    print('\n === NOTES ===')
-    for x in listObj['tasks']:
-        print('\n\n Id:', x['id'])
-        print('\n Title:', x['title'])
-        print('\n Note:', x['note'])
+        id_generator = itertools.count(1)
+        print('\n === NOTES ===')
+        for x in listObj['tasks']:
+            x['id'] = next(id_generator)
+            print('\n\n Id:', x['id'])
+            print('\n Title:', x['title'])
+            print('\n Note:', x['note'])
+        file.seek(0)
+        json.dump(listObj, file, indent=4)
     input('\n\n Enter to return to menu: ')
     os.system('cls')
     startMenu()
