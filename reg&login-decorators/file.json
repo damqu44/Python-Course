@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "email": "123@edu.pl",
+            "password": "123",
+            "name": "Jan",
+            "lastname": "Kowalski"
+        },
+        {
+            "email": "123@org.pl",
+            "password": "123",
+            "name": "Anna",
+            "lastname": "Kowalska"
+        }
+    ]
+}
